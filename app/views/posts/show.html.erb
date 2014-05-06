@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<!-- views/posts/show.html.erb /-->
+
+<h1> <%= @post.title %></h1>
+
+<h2> <%= @post.body %></h2>
+
+Number of children: <%= @children.count %>
+
+<%= render @children %>
