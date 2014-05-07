@@ -1,7 +1,16 @@
 <!-- views/posts/_post.html.erb /-->
 <p>
-  <h3> 
-    This child's title is: <%= post.title %>
+    <h3>
+    <% case post.ptype %>
+    <% when FOLDER_TYPE %>
+      <%= link_to ("[Folder] " + post.title), post %>
+    <% when LINK_TYPE %>
+      <%= link_to("[Link] " + post.title, post.body) %>
+    <% when BLOG_TYPE %>
+      <%= link_to("[Blog] " + post.title, post) %>
+    <% when TWEET_TYPE %>
+      Tweet type: <%= post.title %>
+      <h5><%= post.body %></h5>
+    <% end %>
   </h3>
-  This child's body is: <%= post.body %>
-<p>
+</p>

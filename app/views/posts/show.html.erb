@@ -1,9 +1,18 @@
 <!-- views/posts/show.html.erb /-->
 
-<h1> <%= @post.title %></h1>
+<% case @post.ptype %>
+<% when LINK_TYPE %>
+  I don't know how to display link types yet.
+<% when BLOG_TYPE %>
+  <h1><%= @post.title %></h1>
+  <%= @post.body %>
+<% when TWEET_TYPE %>
+  I don't know how to display tweet types yet.
+<% when FOLDER_TYPE %>
 
-<h2> <%= @post.body %></h2>
+  <h1> <%= @post.title %></h1>
+  <h2> <%= @post.body %></h2>
+  Number of children: <%= @children.count %>
+  <%= render @children %>
 
-Number of children: <%= @children.count %>
-
-<%= render @children %>
+<% end %>
