@@ -1,0 +1,4 @@
+# config/application.example.yml
+SENDGRID_PASSWORD: "abc123"
+SENDGRID_USERNAME: "abc123@heroku.com"
+DEVISE_SECRET_KEY: 'abc123'

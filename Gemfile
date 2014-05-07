@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.4'
 
 gem 'ancestry'
+gem 'devise' #user authentication
+gem 'figaro'
 
 group :production do
   gem 'pg'
