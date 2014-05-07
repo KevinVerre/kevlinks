@@ -5,3 +5,27 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+kevin = User.new(name: 'Kevin', email: 'verre.kevin@gmail.com', password: 'helloworld', password_confirmation: 'helloworld')
+kevin.skip_confirmation!
+kevin.save
+
+root = Post.create(ptype: FOLDER_TYPE, title: "Kevin's KevLinks Page", body: "My first attempt at making a KevLinks page.")
+topicA = Post.create(ptype: FOLDER_TYPE, title: "Notes on Mac OSX", body: "")
+topicB = Post.create(ptype: FOLDER_TYPE, title: "Websites", body: "Websites and the Internet")
+topicC = Post.create(ptype: FOLDER_TYPE, title: "iPhone", body: "iPhone and iOS notes")
+postC = Post.create(ptype: BLOG_TYPE, title: "Swell Radio", body: "Swell is like Pandora radio but for podcasts instead of music.")
+postC2 = Post.create(ptype: BLOG_TYPE, title: "Coffee Meets Bagel", body: "CMB is a really simple Dating App. It matches you with one new person a day. It uses your Facebook to try to match you with friends of friends.")
+postA = Post.create(ptype: TWEET_TYPE, title: "Dropbox", body: "Automatically save every version of your files to the cloud.")
+postA2 = Post.create(ptype: BLOG_TYPE, title: "Evernote", body: "Evernote sucks, but it's still the best note taking software available on computers today.")
+postB = Post.create(ptype: LINK_TYPE, title: "Medium.com - well designed blogging platform", body: "medium.com")
+postB2 = Post.create(ptype: LINK_TYPE, title: "GetWorkDoneMusic.com - Techno music. Better than Pandora for getting work done.", body: "www.GetWorkDoneMusic.com")
+topicA.update(parent: root)
+topicB.update(parent: root)
+topicC.update(parent: root)
+postA.update(parent: topicA)
+postA2.update(parent: topicA)
+postB.update(parent: topicB)
+postB2.update(parent:topicB)
+postC.update(parent: topicC)
+postC2.update(parent: topicC)
