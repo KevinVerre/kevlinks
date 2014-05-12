@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    my_params = params.require(:post).permit(:parent_id, :title, :body, :ptype)
+    my_params = post_params
     @post = Post.new(my_params)
     @post.user = current_user
 
@@ -36,6 +36,15 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      redirect_to @post
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -53,6 +62,10 @@ class PostsController < ApplicationController
     end
 
     render :show
+  end
+
+  def post_params
+    params.require(:post).permit(:parent_id, :title, :body, :ptype, :private)
   end
 
 end

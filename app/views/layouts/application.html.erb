@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Kevlinks</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Kevlinks</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
 
-<%= yield %>
+      <ul class="nav nav-tabs">
+        <li><%= link_to "KevLinks Home", root_path %></li>
+        <li><%= link_to "Other Users", users_path %></li>
+      </ul>
 
-</body>
+      <div class="pull-right user-info">
+        <% if current_user %>
+
+          Hello <%= link_to (current_user.email), current_user %>!
+
+          <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+            <span class="glyphicon glyphicon-log-out"></span>
+          <% end %>
+
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path %> or 
+          <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </div>
+  </body>
 </html>

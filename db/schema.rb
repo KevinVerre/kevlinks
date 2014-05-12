@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507175910) do
+ActiveRecord::Schema.define(version: 20140512201610) do
 
   create_table "folders", force: true do |t|
     t.integer  "post_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140507175910) do
     t.string   "type"
     t.integer  "user_id"
     t.string   "ptype"
+    t.boolean  "private"
   end
 
   add_index "posts", ["ancestry"], name: "index_posts_on_ancestry"

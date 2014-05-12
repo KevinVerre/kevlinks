@@ -8,18 +8,22 @@
 
     <h1> <%= @post.title %></h1>
     <h2> <%= @post.body %></h2>
-    Number of children: <%= @children.count %>
     <%= render @children %>
 
-    <p><%= link_to "New Post", new_post_path(:parent_id => @post.id) %></p>
+    <p><%= link_to "New Post", new_post_path(:parent_id => @post.id) if (current_user && @post.user == current_user) %></p>
 
 <% end %>
 
-<p><small>
-  <%= link_to "Edit this post", edit_post_path(@post) if @post.user == current_user %>
-</small></p>
+<% if current_user && current_user == @post.user %>
+  <p><small>
+    <%= link_to "Edit this post", edit_post_path(@post) %>
+  </small></p>
+<% end %>
 
 <p><%= link_to "Back", @post.parent if @post.parent %></p>
-<small>
-  <%= link_to "Delete this post", @post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} if current_user %>
-</small>
+
+<% if current_user && current_user == @post.user && current_user.root != @post %>
+  <p><small>
+    <%= link_to "Delete this post", @post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'}%>
+  </small></p>
+<% end %>

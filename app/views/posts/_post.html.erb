@@ -1,16 +1,18 @@
 <!-- views/posts/_post.html.erb /-->
 <p>
-    <h3>
+  <h3><div class="media">
+  <span class="<%= post.icon %>"></span>
     <% case post.ptype %>
-    <% when FOLDER_TYPE %>
-      <%= link_to ("[Folder] " + post.title), post %>
-    <% when LINK_TYPE %>
-      <%= link_to("[Link] " + post.title, post.body) %>
-    <% when BLOG_TYPE %>
-      <%= link_to("[Blog] " + post.title, post) %>
-    <% when TWEET_TYPE %>
-      [Tweet] type: <%= post.title %>
-      <h5><%= post.body %></h5>
+      <% when FOLDER_TYPE %>
+        <%= link_to ("[Folder] " + post.title), post %>
+      <% when LINK_TYPE %>
+        <%= link_to("[Link] " + post.title, post.body) %>
+      <% when BLOG_TYPE %>
+        <%= link_to("[Blog] " + post.title, post) %>
+      <% when TWEET_TYPE %>
+        [Tweet] <%= post.title %>
+        <h5><%= post.body %></h5>
     <% end %>
+  </div>
   </h3>
 </p>
