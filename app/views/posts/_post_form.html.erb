@@ -1,0 +1,15 @@
+<%= form_for post do |f| %>
+
+  <%=f.hidden_field :parent_id, value: parent_id %>
+
+  <%= f.label :ptype %>
+  <%= f.text_field :ptype %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Save" %>
+<% end %>

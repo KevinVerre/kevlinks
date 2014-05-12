@@ -1,2 +1,4 @@
 <h1>Posts#new</h1>
 <p>Find me in app/views/posts/new.html.erb</p>
+
+<%= render partial: 'post_form', locals: {post: @post, parent_id: @parent_id} %>

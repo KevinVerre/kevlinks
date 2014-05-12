@@ -9,7 +9,7 @@
     <% when BLOG_TYPE %>
       <%= link_to("[Blog] " + post.title, post) %>
     <% when TWEET_TYPE %>
-      Tweet type: <%= post.title %>
+      [Tweet] type: <%= post.title %>
       <h5><%= post.body %></h5>
     <% end %>
   </h3>

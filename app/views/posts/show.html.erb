@@ -1,18 +1,20 @@
 <!-- views/posts/show.html.erb /-->
 
 <% case @post.ptype %>
-<% when LINK_TYPE %>
-  I don't know how to display link types yet.
-<% when BLOG_TYPE %>
-  <h1><%= @post.title %></h1>
-  <%= @post.body %>
-<% when TWEET_TYPE %>
-  I don't know how to display tweet types yet.
-<% when FOLDER_TYPE %>
+  <% when BLOG_TYPE %>
+    <h1><%= @post.title %></h1>
+    <%= @post.body %>
+  <% when FOLDER_TYPE %>
 
-  <h1> <%= @post.title %></h1>
-  <h2> <%= @post.body %></h2>
-  Number of children: <%= @children.count %>
-  <%= render @children %>
+    <h1> <%= @post.title %></h1>
+    <h2> <%= @post.body %></h2>
+    Number of children: <%= @children.count %>
+    <%= render @children %>
+
+    <p><%= link_to "New Post", new_post_path(:parent_id => @post.id) %></p>
 
 <% end %>
+<p><%= link_to "Back", @post.parent if @post.parent %></p>
+<small>
+  <%= link_to "Delete this post", @post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} if current_user %>
+</small>
