@@ -14,6 +14,11 @@
     <p><%= link_to "New Post", new_post_path(:parent_id => @post.id) %></p>
 
 <% end %>
+
+<p><small>
+  <%= link_to "Edit this post", edit_post_path(@post) if @post.user == current_user %>
+</small></p>
+
 <p><%= link_to "Back", @post.parent if @post.parent %></p>
 <small>
   <%= link_to "Delete this post", @post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} if current_user %>
