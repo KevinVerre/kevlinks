@@ -1,0 +1,12 @@
+<%= form_for post do |f| %>
+  <%= f.hidden_field :parent_id, value: parent_id %>
+  <%= f.hidden_field :ptype, value: FOLDER_TYPE %>
+
+  <%= f.label "Folder Name:" %>
+  <%= f.text_field :title %>
+
+  <%= f.label "Folder Subtitle:"%>
+  <%= f.text_field :body, placeholder: "(Not required)"%>
+
+  <%= f.submit "Save" %>
+<% end %>

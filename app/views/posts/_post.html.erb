@@ -1,18 +1,27 @@
 <!-- views/posts/_post.html.erb /-->
-<p>
-  <h3><div class="media">
-  <span class="<%= post.icon %>"></span>
+<div class="media panel">
+  <span class="<%= post.icon %> pull-left"></span>
+  <div class="media-body">
     <% case post.ptype %>
-      <% when FOLDER_TYPE %>
-        <%= link_to ("[Folder] " + post.title), post %>
-      <% when LINK_TYPE %>
-        <%= link_to("[Link] " + post.title, post.body) %>
-      <% when BLOG_TYPE %>
-        <%= link_to("[Blog] " + post.title, post) %>
-      <% when TWEET_TYPE %>
-        [Tweet] <%= post.title %>
-        <h5><%= post.body %></h5>
+    <% when FOLDER_TYPE %>
+      <h4 class="media-heading">
+        <%= link_to (" " + post.title), post %>
+      </h4>
+      <%= post.body %>
+    <% when LINK_TYPE %>
+      <h4 class="media-heading"><%= post.title %></h4>
+      <%= link_to(" " + post.body, post.body, class: 'pull-left') %>
+      <div class='pull-right'>
+        <%= link_to 'edit', 'www.abc.com', class: 'btn btn-default btn-sm' %>
+        <%= link_to 'delete', 'www.abc.com', class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
+      </div>
+    <% when BLOG_TYPE %>
+      <%= link_to(" " + post.title, post) %>
+    <% when TWEET_TYPE %>
+      <h4 class="media-heading">
+        <%= post.title %>
+      </h4>
+      <%= post.body %>
     <% end %>
   </div>
-  </h3>
-</p>
+</div>

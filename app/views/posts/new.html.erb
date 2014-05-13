@@ -1,4 +1,3 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
-
+<h4><%= @parent_title %></h4>
 <%= render partial: 'post_form', locals: {post: @post, parent_id: @parent_id} %>
+<%= link_to "Back", post_path(@parent_id), class: 'btn btn-default' %>

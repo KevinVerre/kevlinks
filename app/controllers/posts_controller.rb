@@ -11,13 +11,14 @@ class PostsController < ApplicationController
     end
 
     @children = @post.children
+
+    @new_post = Post.new
   end
 
   def new
     @post = Post.new
     @parent_id = params[:parent_id]
-    logger.debug "@parent_id: #{@parent_id}"
-
+    @parent_title = Post.find(@parent_id).title
   end
 
   def create

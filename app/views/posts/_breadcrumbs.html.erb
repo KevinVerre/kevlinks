@@ -1,0 +1,15 @@
+<% 
+  # _breadcrumbs.html.erb
+  # Displays a list of breadcrumbs to the current folder.
+  # input: post
+%>
+<ol class="breadcrumb">
+  <li></li>
+  <% post.ancestors.each do |p| %>
+    <li><%= link_to(p.title, p) %></li>
+  <% end %>
+  <li class="active"><%= post.title %></li>
+  <% if post.ptype == FOLDER_TYPE %>
+    <li></li>
+  <% end %>
+</ol>

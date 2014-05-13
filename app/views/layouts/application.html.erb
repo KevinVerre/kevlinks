@@ -10,11 +10,11 @@
     <div class="container">
 
       <ul class="nav nav-tabs">
-        <li><%= link_to "KevLinks Home", root_path %></li>
-        <li><%= link_to "Other Users", users_path %></li>
-      </ul>
-
-      <div class="pull-right user-info">
+        <li><%= link_to "www.kevnotes.com", root_path, class: 'glyphicon glyphicon-home' %></li>
+        <li><%= link_to "Other Users", users_path, class: 'glyphicon glyphicon-user'%></li>
+        <li><%= link_to "About", welcome_about_path, class: 'glyphicon glyphicon-info-sign'%></li>
+      
+        <li class="pull-right"><div class="pull-right user-info">
         <% if current_user %>
 
           Hello <%= link_to (current_user.email), current_user %>!
@@ -27,7 +27,12 @@
           <%= link_to "Sign In", new_user_session_path %> or 
           <%= link_to "Sign Up", new_user_registration_path %>
         <% end %>
-      </div>
+      </div></li>
+
+
+      </ul>
+
+
 
       <%= yield %>
     </div>

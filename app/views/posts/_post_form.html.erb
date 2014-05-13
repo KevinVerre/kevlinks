@@ -1,15 +1,64 @@
-<%= form_for post do |f| %>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tweet" data-toggle="tab">Add a Note</a></li>
+  <li><a href="#link" data-toggle="tab">Post a Link</a></li>
+  <li><a href="#blog" data-toggle="tab">Write a new Blog Post</a></li>
+  <!--<li><a href="#folder" data-toggle="tab">Create a new Folder</a></li>/-->
+</ul>
+<div class="tab-content">
+  <div class="tab-pane" id="folder">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: FOLDER_TYPE %>
 
-  <%=f.hidden_field :parent_id, value: parent_id %>
+      <%= f.label "Folder Name:" %>
+      <%= f.text_field :title %>
 
-  <%= f.label :ptype %>
-  <%= f.text_field :ptype %>
+      <%= f.label "Folder Subtitle:"%>
+      <%= f.text_field :body, placeholder: "(Not required)"%>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="blog">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: BLOG_TYPE %>
 
-  <%= f.label :body %>
-  <%= f.text_area :body %>
+      <%= f.label "Blog Title:" %>
+      <%= f.text_field :title %>
 
-  <%= f.submit "Save" %>
-<% end %>
+      <%= f.label "Blog Content:"%>
+      <%= f.text_area :body, placeholder: "Type your text here."%>
+
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="link">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: LINK_TYPE %>
+
+      <%= f.label "Title for Link Bookmark" %>
+      <%= f.text_field :title %>
+
+      <%= f.label "URL:"%>
+      <%= f.text_field :body, placeholder: "http://"%>
+
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="tweet">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: TWEET_TYPE %>
+
+      <%= f.label "Tweet title:" %>
+      <%= f.text_field :title %>
+
+      <%= f.label "Tweet subtitle:"%>
+      <%= f.text_field :body, placeholder: "(Not required)"%>
+
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+</div>
