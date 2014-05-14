@@ -2,19 +2,33 @@
 <%= render partial: 'breadcrumbs', locals: {post: @post} %>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1><span class="<%= @post.icon %>"></span><%= "   " + @post.title %>
+    <h1><span class="<%= @post.icon %>"></span><%= "   " + @post.title %></h1>
 
     <% if current_user && current_user == @post.user %>
-        <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-info btn-xs pull-right' %>
+      <button class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#editFolderModal">edit</button>  
+      <div class="modal fade" id="editFolderModal" tabindex="-1" role="dialog" aria-labelledby="editFolderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="editModalLabel">Edit Folder</h4>
+            </div>
+            <div class="modal-body">
+              <%= render partial: "folder_form", locals: {post: @post, parent_id: @post.parent_id }%>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-    </h1>
+
+   
     <% case @post.ptype %>
     <% when BLOG_TYPE %>
       </div>
       <div class="panel-body">
         <%= @post.body %>
     <% when FOLDER_TYPE %>
-      <h3 class="small"> <%= @post.body %></h2>
+      <h3 class="small"> <%= @post.body %></h3>
       </div>
       <div class="panel-body">
       <%= render @children %>
@@ -37,6 +51,7 @@
           </div>
         </div>
       <% end %>
+
     <% end %>
   </div>
 </div>
@@ -44,6 +59,6 @@
 
 <% if current_user && current_user == @post.user && current_user.root != @post %>
   <small>
-    <%= link_to "Delete this #{@post.ptype}", @post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'}, class: 'btn btn-danger pull-right' %>
+    <%= link_to "Delete this #{@post.ptype}", @post, method: :delete, data: {confirm: "Are you sure you want to delete \"#{@post.title}\""}, class: 'btn btn-danger pull-right' %>
   </small>
 <% end %>

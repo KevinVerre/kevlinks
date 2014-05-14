@@ -5,32 +5,18 @@
   <!--<li><a href="#folder" data-toggle="tab">Create a new Folder</a></li>/-->
 </ul>
 <div class="tab-content">
-  <div class="tab-pane" id="folder">
-    <%= form_for post do |f| %>
-      <%= f.hidden_field :parent_id, value: parent_id %>
-      <%= f.hidden_field :ptype, value: FOLDER_TYPE %>
-
-      <%= f.label "Folder Name:" %>
-      <%= f.text_field :title %>
-
-      <%= f.label "Folder Subtitle:"%>
-      <%= f.text_field :body, placeholder: "(Not required)"%>
-
-      <%= f.submit "Save" %>
-    <% end %>
-  </div>
   <div class="tab-pane" id="blog">
     <%= form_for post do |f| %>
       <%= f.hidden_field :parent_id, value: parent_id %>
       <%= f.hidden_field :ptype, value: BLOG_TYPE %>
 
       <%= f.label "Blog Title:" %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
 
       <%= f.label "Blog Content:"%>
-      <%= f.text_area :body, placeholder: "Type your text here."%>
+      <%= f.text_area :body, placeholder: "Type your text here.", class: 'form-control' %>
 
-      <%= f.submit "Save" %>
+      <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
   <div class="tab-pane" id="link">
@@ -39,26 +25,26 @@
       <%= f.hidden_field :ptype, value: LINK_TYPE %>
 
       <%= f.label "Title for Link Bookmark" %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
 
       <%= f.label "URL:"%>
-      <%= f.text_field :body, placeholder: "http://"%>
+      <%= f.text_field :body, placeholder: "http://", class: 'form-control' %>
 
-      <%= f.submit "Save" %>
+      <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
-  <div class="tab-pane" id="tweet">
+  <div class="tab-pane active" id="tweet">
     <%= form_for post do |f| %>
       <%= f.hidden_field :parent_id, value: parent_id %>
       <%= f.hidden_field :ptype, value: TWEET_TYPE %>
 
-      <%= f.label "Tweet title:" %>
-      <%= f.text_field :title %>
+      <%= f.label "Note title:", class: 'form-label' %>
+      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
 
-      <%= f.label "Tweet subtitle:"%>
-      <%= f.text_field :body, placeholder: "(Not required)"%>
+      <%= f.label "Note subtitle:", class: 'form-label' %>
+      <%= f.text_field :body, placeholder: "(Not required)", class: 'form-control' %>
 
-      <%= f.submit "Save" %>
+      <%= f.submit "Save", class: 'btn btn-success'%>
     <% end %>
   </div>
 </div>

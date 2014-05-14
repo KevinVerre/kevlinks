@@ -3,10 +3,10 @@
   <%= f.hidden_field :ptype, value: FOLDER_TYPE %>
 
   <%= f.label "Folder Name:" %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
 
   <%= f.label "Folder Subtitle:"%>
-  <%= f.text_field :body, placeholder: "(Not required)"%>
+  <%= f.text_field :body, placeholder: "(Not required)", class: 'form-control' %>
 
-  <%= f.submit "Save" %>
+  <%= f.submit "Save", class: 'btn btn-success' %>
 <% end %>
