@@ -16,6 +16,11 @@
       <%= f.label "Blog Content:"%>
       <%= f.text_area :body, placeholder: "Type your text here.", class: 'form-control' %>
 
+      <%= f.label "Private" %>
+      <%= f.radio_button :private, true, checked: true %>
+      <%= f.label "Public" %>
+      <%= f.radio_button :private, false %>
+
       <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
@@ -30,6 +35,11 @@
       <%= f.label "URL:"%>
       <%= f.text_field :body, placeholder: "http://", class: 'form-control' %>
 
+      <%= f.label "Private" %>
+      <%= f.radio_button :private, true, checked: true %>
+      <%= f.label "Public" %>
+      <%= f.radio_button :private, false %>
+
       <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
@@ -43,6 +53,11 @@
 
       <%= f.label "Note subtitle:", class: 'form-label' %>
       <%= f.text_field :body, placeholder: "(Not required)", class: 'form-control' %>
+
+      <%= f.label "Private" %>
+      <%= f.radio_button :private, true, checked: true %>
+      <%= f.label "Public" %>
+      <%= f.radio_button :private, false %>
 
       <%= f.submit "Save", class: 'btn btn-success'%>
     <% end %>

@@ -7,12 +7,10 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container">
-    <div class="container">
     <div class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
+      <div class="container">
         
-        <div class="navbar">
+        <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li>
               <%= link_to "www.kevnotes.com", root_path %>
@@ -25,29 +23,28 @@
 
             <li><%= link_to "About", welcome_about_path %></li>
           </ul>
-
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <div class="pull-right user-info">
-                <% if current_user %>
-                  Hello <%= link_to (current_user.email), current_user %>!
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
-                    <span class="glyphicon glyphicon-log-out"></span>
-                  <% end %>
-                <% else %>
-                  <%= link_to "Sign In", new_user_session_path %> or 
+              <% if current_user %>
+                <li>
+                  Hello User!
+                </li>
+                <li>
+                  <%= link_to "sign out", destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to "Sign In", new_user_session_path %>
+                </li>
+                <li>
                   <%= link_to "Sign Up", new_user_registration_path %>
-                <% end %>
-              </div>
-            </li>
+                </li>
+              <% end %>
           </ul>
         </div>
       </div>
     </div>
-    </div>
     <div class="container">
       <%= yield %>
-    </div>
     </div>
   </body>
 </html>

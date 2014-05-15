@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(my_params)
     @post.user = current_user
 
-    logger.debug "DEBUG: my_params[:parent_id] #{my_params[:parent_id]}"
+    PostChecker(@post)
 
     if @post.save
       redirect_to @post
@@ -41,6 +41,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+
     if @post.update_attributes(post_params)
       redirect_to @post
     else
@@ -67,6 +68,22 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:parent_id, :title, :body, :ptype, :private)
+  end
+
+  private
+
+  def url_checker(inputString)
+    resultingString = ""
+    if !inputString.starts_with?("http://")
+      resultingString = "http://" + inputString
+    end
+    resultingString
+  end
+
+  def PostChecker(p)
+    if p.ptype == LINK_TYPE
+      p.body = url_checker p.body
+    end
   end
 
 end

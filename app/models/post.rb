@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   has_ancestry(orphan_strategy: :destroy)
   belongs_to :user
 
+  
+
   def icon
     case self.ptype
     when FOLDER_TYPE

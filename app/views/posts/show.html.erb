@@ -2,7 +2,7 @@
 <%= render partial: 'breadcrumbs', locals: {post: @post} %>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1><span class="<%= @post.icon %>"></span><%= "   " + @post.title %></h1>
+    <h1><span class="<%= PrivacyIcon(@post) %> iconPadding"></span><span class="<%= @post.icon %> iconPadding"></span><%= @post.title %></h1>
 
     <% if current_user && current_user == @post.user %>
       <button class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#editFolderModal">edit</button>  

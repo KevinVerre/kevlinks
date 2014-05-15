@@ -1,6 +1,8 @@
 <!-- views/posts/_post.html.erb /-->
 <div class="media panel">
-  <span class="<%= post.icon %> pull-left"></span>
+
+  <span class="pull-left iconPadding <%= PrivacyIcon(post) %>">    </span>
+  <span class="<%= post.icon %> pull-left iconPadding">    </span>
   <div class="media-body">
     <% case post.ptype %>
     <% when FOLDER_TYPE %>
