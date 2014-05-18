@@ -31,7 +31,12 @@
       <h3 class="small"> <%= @post.body %></h3>
       </div>
       <div class="panel-body">
-      <%= render @children %>
+      <% @children.each do |childpost| %>
+        <% if IsVisible?(childpost) %>
+          <%= render childpost %>
+        <% end %>
+      <% end %>
+      
 
       <p><%= link_to "+ New Note", new_post_path(:parent_id => @post.id), class: 'btn btn-success' if (current_user && @post.user == current_user) %></p>
 
