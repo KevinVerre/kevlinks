@@ -15,7 +15,7 @@
       <%= link_to(" " + post.body, post.body, class: 'pull-left') %>
       <% if current_user && current_user == post.user %>
         <div class='pull-right'>
-          <%= link_to 'edit', post, class: 'btn btn-default btn-sm' %>
+          <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
           <%= link_to 'delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this link?'}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
         </div>
       <% end %>
@@ -30,7 +30,7 @@
       <%= post.body %>
       <% if current_user && current_user == post.user %>
         <div class='pull-right'>
-          <%= link_to 'edit', 'www.abc.com', class: 'btn btn-default btn-sm' %>
+          <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
           <%= link_to 'delete', post, method: :delete, data: {confirm: "Are you sure you want to delete this note?"},class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
         </div>
       <% end %>
