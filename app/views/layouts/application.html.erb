@@ -8,24 +8,23 @@
   </head>
   <body>
 
-
     <!-- Static navbar -->
     <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
 
-
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class=""><%= link_to "www.FolderNotes.com", root_path %></li>
+            <li><%= link_to "Newsfeed", posts_path %></li>
             <li><%= link_to "About", welcome_about_path %></li>
             <li><%= link_to "Other Users", users_path %></li>
-            
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
             <% if current_user %>
-              <li class="active"><%= link_to "Hello, "+ current_user.email + "!", "#" %></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              <li class="active"><%= link_to "Hello, "+ current_user.email + "!", root_path %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
             <% else %>
               <li class=""><%= link_to "Sign In", new_user_session_path %></li>
               <li><%= link_to "Sign Up", new_user_registration_path %></li>
@@ -34,8 +33,6 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-
 
     <div class="container">
       <%= yield %>

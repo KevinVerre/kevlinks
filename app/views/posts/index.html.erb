@@ -1,4 +1,9 @@
-<h1>Posts#index</h1>
-<% for post in @posts %>
-  <p><%= post.title %></p>
-<% end %>
+<h1>Newsfeed</h1>
+
+<div class="panel media" >
+  <div class="panel-body">
+  <%= render partial: @posts %>
+  </div>
+</div>
+
+

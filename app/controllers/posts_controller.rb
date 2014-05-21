@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.where("private = 'f' OR user_id = ?", current_user).order("created_at DESC")
   end
 
   def show
