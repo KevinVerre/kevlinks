@@ -1,7 +1,7 @@
 module PostsHelper
 
   def IsVisible?(p)
-    p.user == current_user || p.private == false
+    p.private == false || p.user == current_user
   end
 
   def PrivacyIcon(p)
