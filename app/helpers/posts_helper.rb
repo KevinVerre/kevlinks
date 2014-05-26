@@ -12,4 +12,8 @@ module PostsHelper
     end
   end
 
+  def GetPrivacyString(p)
+    p.private ? "private" : "public"
+  end
+
 end
