@@ -1,3 +1,11 @@
-<h4><%= @parent_title %></h4>
-<%= render partial: 'post_form', locals: {post: @post, parent_id: @parent_id} %>
-<div class=""><%= link_to "Back", post_path(@parent_id), class: 'btn btn-default' %></div>
+<%= render partial: 'breadcrumbs', locals: {post: @parent_post} %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1><small>Add a new note in folder:</small> <%= @parent_title %></h1>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'post_form', locals: {post: @post, parent_id: @parent_id} %>
+  </div>
+</div>
+
+<%= link_to "Back (without saving)", post_path(@parent_id), class: 'btn btn-default' %>

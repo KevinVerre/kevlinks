@@ -1,3 +1,10 @@
-<h1>Edit</h1>
-
-<%= render partial: 'post_form', locals: {post: @post, parent_id: @post.parent_id} %>
+<%= render partial: 'breadcrumbs', locals: {post: @parent_post} %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1><small>Edit:</small> <%= @post.title %></h1>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'post_form', locals: {post: @post, parent_id: @post.parent_id} %>
+  </div>
+</div>
+<%= link_to "Back (without saving changes)", @post, class: 'btn btn-default' %>

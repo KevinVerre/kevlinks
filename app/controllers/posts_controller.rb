@@ -17,8 +17,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.ptype = TWEET_TYPE
     @parent_id = params[:parent_id]
-    @parent_title = Post.find(@parent_id).title
+    @parent_post = Post.find(@parent_id)
+    @parent_title = @parent_post.title
   end
 
   def create
@@ -37,6 +39,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @parent_post = @post.parent
   end
 
   def update

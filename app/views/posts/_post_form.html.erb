@@ -1,49 +1,11 @@
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#tweet" data-toggle="tab">Add a Note</a></li>
-  <li><a href="#link" data-toggle="tab">Post a Link</a></li>
-  <li><a href="#blog" data-toggle="tab">Write a new Blog Post</a></li>
+  <li class="<%='active' if post.ptype == TWEET_TYPE %>"><a href="#tweet" data-toggle="tab">Add a Note</a></li>
+  <li class="<%='active' if post.ptype == LINK_TYPE %>"><a href="#link" data-toggle="tab">Post a Link</a></li>
+  <li class="<%='active' if post.ptype == BLOG_TYPE %>"><a href="#blog" data-toggle="tab">Write a new Blog Post</a></li>
   <!--<li><a href="#folder" data-toggle="tab">Create a new Folder</a></li>/-->
 </ul>
 <div class="tab-content">
-  <div class="tab-pane" id="blog">
-    <%= form_for post do |f| %>
-      <%= f.hidden_field :parent_id, value: parent_id %>
-      <%= f.hidden_field :ptype, value: BLOG_TYPE %>
-
-      <%= f.label "Blog Title:" %>
-      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
-
-      <%= f.label "Blog Content:"%>
-      <%= f.text_area :body, placeholder: "Type your text here.", class: 'form-control' %>
-
-      <%= f.label "Private" %>
-      <%= f.radio_button :private, true, checked: true %>
-      <%= f.label "Public" %>
-      <%= f.radio_button :private, false %>
-
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    <% end %>
-  </div>
-  <div class="tab-pane" id="link">
-    <%= form_for post do |f| %>
-      <%= f.hidden_field :parent_id, value: parent_id %>
-      <%= f.hidden_field :ptype, value: LINK_TYPE %>
-
-      <%= f.label "Title for Link Bookmark" %>
-      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
-
-      <%= f.label "URL:"%>
-      <%= f.text_field :body, placeholder: "http://", class: 'form-control' %>
-
-      <%= f.label "Private" %>
-      <%= f.radio_button :private, true, checked: true %>
-      <%= f.label "Public" %>
-      <%= f.radio_button :private, false %>
-
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    <% end %>
-  </div>
-  <div class="tab-pane active" id="tweet">
+  <div class="tab-pane <%='active' if post.ptype == TWEET_TYPE %>" id="tweet">
     <%= form_for post do |f| %>
       <%= f.hidden_field :parent_id, value: parent_id %>
       <%= f.hidden_field :ptype, value: TWEET_TYPE %>
@@ -60,6 +22,44 @@
       <%= f.radio_button :private, false %>
 
       <%= f.submit "Save", class: 'btn btn-success'%>
+    <% end %>
+  </div>
+  <div class="tab-pane <%='active' if post.ptype == LINK_TYPE %>" id="link">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: LINK_TYPE %>
+
+      <%= f.label "Title for Link" %>
+      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
+
+      <%= f.label "URL:"%>
+      <%= f.text_field :body, placeholder: "http://", class: 'form-control' %>
+
+      <%= f.label "Private" %>
+      <%= f.radio_button :private, true, checked: true %>
+      <%= f.label "Public" %>
+      <%= f.radio_button :private, false %>
+
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+  <div class="tab-pane <%='active' if post.ptype == BLOG_TYPE %>" id="blog">
+    <%= form_for post do |f| %>
+      <%= f.hidden_field :parent_id, value: parent_id %>
+      <%= f.hidden_field :ptype, value: BLOG_TYPE %>
+
+      <%= f.label "Blog Title:" %>
+      <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
+
+      <%= f.label "Blog Content:"%>
+      <%= f.text_area :body, placeholder: "Type your text here.", class: 'form-control' %>
+
+      <%= f.label "Private" %>
+      <%= f.radio_button :private, true, checked: true %>
+      <%= f.label "Public" %>
+      <%= f.radio_button :private, false %>
+
+      <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>
