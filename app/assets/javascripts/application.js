@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require_tree .
 
-$(document).ready(function(){
-  $("[data-toggle='tooltip']").tooltip();
+$(document).on('ready page:load', function () {
+  console.log("on ready page:load");
+  $("[data-toggle=tooltip]").tooltip();
 });
