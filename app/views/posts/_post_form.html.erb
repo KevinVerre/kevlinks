@@ -52,7 +52,7 @@
       <%= f.text_field :title, :autofocus=>true, class: 'form-control' %>
 
       <%= f.label "Blog Content:"%>
-      <%= f.text_area :body, placeholder: "Type your text here.", class: 'form-control' %>
+      <%= f.text_area :body, rows: 15, placeholder: "Type your text here.", class: 'form-control' %>
 
       <%= f.label "Private" %>
       <%= f.radio_button :private, true, checked: true %>
