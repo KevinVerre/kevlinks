@@ -21,13 +21,13 @@
       <% end %>
     <% when BLOG_TYPE %>
       <h4 class="media-heading">
-        <%= link_to(" " + post.title, post) %>
+        <%= link_to " " + post.title, post %>
       </h4>
     <% when TWEET_TYPE %>
       <h4 class="media-heading">
         <%= post.title %>
       </h4>
-      <%= post.body %>
+      <%= markdown post.body %>
       <% if current_user && current_user == post.user %>
         <div class='pull-right'>
           <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>

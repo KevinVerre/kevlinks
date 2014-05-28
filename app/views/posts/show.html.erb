@@ -34,7 +34,7 @@
     <% when BLOG_TYPE %>
       </div>
       <div class="panel-body">
-        <%= @post.body %>
+        <%= markdown @post.body %>
     <% when FOLDER_TYPE %>
       <h3 class="small"> <%= @post.body %></h3>
       </div>
