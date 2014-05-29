@@ -1,11 +1,16 @@
-<%= render partial: 'breadcrumbs', locals: {post: @parent_post} %>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1><small>Add a new note in folder:</small> <%= @parent_title %></h1>
+    <h1><span class="glyphicon glyphicon-plus iconPadding"></span>   <small>Add a new note in folder:</small> <%= @parent_title %></h1>
   </div>
   <div class="panel-body">
     <%= render partial: 'post_form', locals: {post: @post, parent_id: @parent_id} %>
   </div>
 </div>
 
-<%= link_to "Back (without saving)", post_path(@parent_id), class: 'btn btn-default' %>
+<a class="btn btn-default" href="<%= post_path(@parent_id)%>">
+  <span class="glyphicon glyphicon-arrow-left"></span> Back (without saving)
+</a>
+
+<hr/>
+<%= render partial: 'breadcrumbs', locals: {post: @parent_post} %>
+<%= render partial: 'folder_show', locals: {post: @parent_post, children: @parent_post.children, new_post: @post} %>
