@@ -41,8 +41,10 @@
         <% if IsVisible?(childpost) %>
           <%= render childpost %>
         <% end %>
-    <% end %>
-      
+      <% end %>
+      <% if children.count == 0 %>
+        <div class="panel"><i>This folder is empty.</i></div>
+      <% end %>
 
       <p><%= link_to "+ New Note", new_post_path(:parent_id => post.id), class: 'btn btn-success' if (current_user && post.user == current_user) %></p>
 
