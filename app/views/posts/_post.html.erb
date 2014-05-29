@@ -10,30 +10,42 @@
         <%= link_to (" " + post.title), post %>
       </h4>
       <%= post.body %>
+      <div class="pull-right">
+        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+      </div>
     <% when LINK_TYPE %>
       <h4 class="media-heading"><%= post.title %></h4>
       <%= link_to(" " + post.body, post.body, class: 'pull-left') %>
-      <% if current_user && current_user == post.user %>
-        <div class='pull-right'>
+      <div class='pull-right'>
+        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+        <% if current_user && current_user == post.user %>
           <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
           <%= link_to 'delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this link?'}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% when BLOG_TYPE %>
       <h4 class="media-heading">
         <%= link_to " " + post.title, post %>
       </h4>
+      <div class="pull-right">
+        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+      </div>
     <% when TWEET_TYPE %>
       <h4 class="media-heading">
         <%= post.title %>
       </h4>
       <%= markdown post.body %>
-      <% if current_user && current_user == post.user %>
-        <div class='pull-right'>
+      <div class='pull-right'>
+        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+        <% if current_user && current_user == post.user %>
           <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
           <%= link_to 'delete', post, method: :delete, data: {confirm: "Are you sure you want to delete this note?"},class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
+
+    <div class="pull-left">
+
+    </div>
   </div>
 </div>
