@@ -2,3 +2,4 @@
 SENDGRID_PASSWORD: "abc123"
 SENDGRID_USERNAME: "abc123@heroku.com"
 DEVISE_SECRET_KEY: 'abc123'
+EXAMPLE_USER_EMAIL: 'yourEmailAddress@gmail.com'
