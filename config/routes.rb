@@ -10,6 +10,9 @@ Kevlinks::Application.routes.draw do
   resources :posts do
     get '/move_up', to: 'posts#move_up'
     get '/move_down', to: 'posts#move_down'
+    get '/move_folder', to: 'posts#move_folder'
+    get '/paste_into_folder', to: 'posts#paste_into_folder'
+    get '/paste_cancel', to: 'posts#paste_cancel'
   end
   resources :users, only: [:index, :show]
 

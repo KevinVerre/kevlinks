@@ -16,4 +16,9 @@ module PostsHelper
     p.private ? "private" : "public"
   end
 
+  def MovePostButton(p)
+    str = "<span data-toggle='tooltip' data-placement='top' title='move this to a different Folder'>" + link_to('move', post_move_folder_path(p), class: 'btn btn-default btn-xs') + "</span>"
+    str.html_safe
+  end
+
 end

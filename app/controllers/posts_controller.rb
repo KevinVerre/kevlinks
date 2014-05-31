@@ -1,4 +1,50 @@
 class PostsController < ApplicationController
+  def move_folder
+    @post = Post.find(params[:post_id])
+    if !current_user || (current_user != @post.user)
+      redirect_to @post.parent
+      return
+    end
+
+    # Store post id into cookie's :cut value
+    session[:cutPostValue] = @post.id
+    redirect_to @post.parent
+  end
+
+  def paste_into_folder
+    @post = Post.find(params[:post_id])
+    if !current_user || (current_user != @post.user)
+      redirect_to @post.parent
+      return
+    end
+
+    # If there is a value > 0 in the cookie's :cut value
+    # Find the post with that value ID and update it's parent to be this folder
+    # Then clear the cookie's value
+    if session[:cutPostValue] > 0
+
+      postToMove = Post.find(session[:cutPostValue])
+      postToMove.parent = @post
+      postToMove.save
+      postToMove.move_to_top
+
+    end
+    session[:cutPostValue] = 0
+    redirect_to @post
+  end
+
+  def paste_cancel
+    @post = Post.find(params[:post_id])
+    if !current_user || (current_user != @post.user)
+      redirect_to @post.parent
+      return
+    end
+
+    # Clear the cookie's :cut value
+    session[:cutPostValue] = 0
+    redirect_to @post
+  end
+
   def move_down
     @post = Post.find(params[:post_id])
     if !current_user || (current_user != @post.user)
@@ -41,6 +87,15 @@ class PostsController < ApplicationController
     @children = @post.children.order(:position)
 
     @new_post = Post.new
+
+    @cutPost
+    if session[:cutPostValue] > 0
+      @cutPost = Post.find(session[:cutPostValue])
+      if (current_user != @cutPost.user)
+        @cutPost = nil
+        session[:cutPostValue] = 0
+      end
+    end
   end
 
   def new

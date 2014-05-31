@@ -1,56 +1,64 @@
 <!-- views/posts/_post.html.erb /-->
 <div class="media panel">
-
-<% if current_user && post.user == current_user %>
-  <div class="pull-left">
-    <div data-toggle="tooltip" data-placement="top" title="move up"><%= link_to image_tag("uparrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_up_path(post), class: "btn btn-xs" %></div>
-    <div data-toggle="tooltip" data-placement="bottom" title="move down"><%= link_to image_tag("downarrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_down_path(post), class: "btn btn-xs" %></div>
-  </div>
-<% end %>
-
-  <h4 style="vertical-align: middle;"><span data-toggle="tooltip" data-placement="top" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>"></span>
-  <span data-toggle="tooltip" data-placement="top" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding"></span></h4>
-
-  <div class="media-body" style="padding-left: 1em;">
-    <% case post.ptype %>
-    <% when FOLDER_TYPE %>
-      <h4 class="media-heading">
-        <%= link_to (" " + post.title), post %>
-      </h4>
-      <%= post.body %>
-      <div class="pull-right">
-        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
-      </div>
-    <% when LINK_TYPE %>
-      <h4 class="media-heading"><%= post.title %></h4>
-      <%= link_to(" " + post.body, post.body, class: 'pull-left') %>
-      <div class='pull-right'>
-        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
-        <% if current_user && current_user == post.user %>
-          <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
-          <%= link_to 'delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this link?'}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
-        <% end %>
-      </div>
-    <% when BLOG_TYPE %>
-      <h4 class="media-heading">
-        <%= link_to " " + post.title, post %>
-      </h4>
-      <div class="pull-right">
-        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
-      </div>
-    <% when TWEET_TYPE %>
-      <h4 class="media-heading">
-        <%= post.title %>
-      </h4>
-      <%= markdown post.body %>
-      <div class='pull-right'>
-        <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
-        <% if current_user && current_user == post.user %>
-          <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
-          <%= link_to 'delete', post, method: :delete, data: {confirm: "Are you sure you want to delete this note?"},class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
-        <% end %>
+  <div class="<%= 'bg-warning' if session[:cutPostValue] == post.id %>">
+    <% if current_user && post.user == current_user %>
+      <div class="pull-left">
+        <div data-toggle="tooltip" data-placement="top" title="move up"><%= link_to image_tag("uparrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_up_path(post), class: "btn btn-xs" %></div>
+        <div data-toggle="tooltip" data-placement="bottom" title="move down"><%= link_to image_tag("downarrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_down_path(post), class: "btn btn-xs" %></div>
       </div>
     <% end %>
 
+    <h4 style="vertical-align: middle;"><span data-toggle="tooltip" data-placement="top" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>"></span>
+    <span data-toggle="tooltip" data-placement="top" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding"></span></h4>
+
+    <div class="media-body" style="padding-left: 1em;">
+      <% case post.ptype %>
+      <% when FOLDER_TYPE %>
+        <h4 class="media-heading">
+          <%= link_to (" " + post.title), post %>
+        </h4>
+        <%= post.body %>
+        <div class="pull-right">
+          <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+          <% if current_user && current_user == post.user %>
+            <%= MovePostButton(post) %>
+          <% end %>
+        </div>
+      <% when LINK_TYPE %>
+        <h4 class="media-heading"><%= post.title %></h4>
+        <%= link_to(" " + post.body, post.body, class: 'pull-left') %>
+        <div class='pull-right'>
+          <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+          <% if current_user && current_user == post.user %>
+            <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
+            <%= MovePostButton(post) %>
+            <%= link_to 'delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this link?'}, class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
+          <% end %>
+        </div>
+      <% when BLOG_TYPE %>
+        <h4 class="media-heading">
+          <%= link_to " " + post.title, post %>
+        </h4>
+        <div class="pull-right">
+          <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+          <% if current_user && current_user == post.user %>
+            <%= MovePostButton(post) %>
+          <% end %>
+        </div>
+      <% when TWEET_TYPE %>
+        <h4 class="media-heading">
+          <%= post.title %>
+        </h4>
+        <%= markdown post.body %>
+        <div class='pull-right'>
+          <small><i><%= time_ago_in_words(post.updated_at) %> ago</i></small>
+          <% if current_user && current_user == post.user %>
+            <%= link_to 'edit', edit_post_path(post), class: 'btn btn-default btn-sm' %>
+            <%= MovePostButton(post) %>
+            <%= link_to 'delete', post, method: :delete, data: {confirm: "Are you sure you want to delete this note?"},class: 'btn btn-danger btn-xs glyphicon glyphicon-remove danger' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
