@@ -59,7 +59,24 @@
       <%= f.label "Public" %>
       <%= f.radio_button :private, false %>
       <br/>
-      <%= f.submit "Save", class: 'btn btn-success' %>
+      <div class="">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Click here to show instructions on how to format your blog post
+        </a>
+      </div>
+      <br/>
+      <div id="collapseOne" class="collapse ">
+        <ul>
+          <li>To list bullet points like this, start each line with an asterisk (*)</li>
+          <li>Surround *your text* with asterisks (*) to <i>make it italic</i></li>
+          <li>Surround **your text** with double asterisks (**) to <b>make it bold</b></li>
+          <li>To include a link use brackets and parentheses: [link text](www.linkURL.com)</li>
+          <li>Surround ~~your text~~ with double tildes to add <del>strikethrough</del> </li>
+        </ul>
+        <br/>
+      </div>
+
+      <%= f.submit "Save", class: 'btn btn-success' %>  
     <% end %>
   </div>
 </div>
