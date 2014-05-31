@@ -3,8 +3,8 @@
 
 <% if current_user && post.user == current_user %>
   <div class="pull-left">
-    <div><%= link_to image_tag("uparrow.png", width: 21, height: 15), post_move_up_path(post), class: "btn btn-xs"%></div>
-    <div><%= link_to image_tag("downarrow.png", width: 21, height: 15), post_move_down_path(post), class: "btn btn-xs" %></div>
+    <div data-toggle="tooltip" data-placement="top" title="move up"><%= link_to image_tag("uparrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_up_path(post), class: "btn btn-xs" %></div>
+    <div data-toggle="tooltip" data-placement="bottom" title="move down"><%= link_to image_tag("downarrow.png", width: 21, height: 15, style: "opacity: 0.3;"), post_move_down_path(post), class: "btn btn-xs" %></div>
   </div>
 <% end %>
 
