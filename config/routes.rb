@@ -7,7 +7,10 @@ Kevlinks::Application.routes.draw do
 
   root to: 'welcome#index'
   
-  resources :posts
+  resources :posts do
+    get '/move_up', to: 'posts#move_up'
+    get '/move_down', to: 'posts#move_down'
+  end
   resources :users, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.

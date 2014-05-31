@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
+gem 'acts_as_list'
 gem 'redcarpet' #markdown formatting
 gem 'ancestry'
 gem 'devise' #user authentication

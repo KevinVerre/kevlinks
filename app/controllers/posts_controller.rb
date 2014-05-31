@@ -1,4 +1,26 @@
 class PostsController < ApplicationController
+  def move_down
+    @post = Post.find(params[:post_id])
+    if !current_user || (current_user != @post.user)
+      redirect_to @post.parent
+      return
+    end
+
+    @post.move_lower
+    redirect_to @post.parent
+  end
+
+  def move_up
+    @post = Post.find(params[:post_id])
+    if !current_user || (current_user != @post.user)
+      redirect_to @post.parent
+      return
+    end
+
+    @post.move_higher
+    redirect_to @post.parent
+  end
+
   def index
     @posts = Post.where("private = 'f' OR user_id = ?", current_user).order("created_at DESC")
   end
@@ -16,7 +38,7 @@ class PostsController < ApplicationController
       redirect_to @post.parent
     end
 
-    @children = @post.children
+    @children = @post.children.order(:position)
 
     @new_post = Post.new
   end

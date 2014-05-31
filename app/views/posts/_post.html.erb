@@ -1,9 +1,17 @@
 <!-- views/posts/_post.html.erb /-->
 <div class="media panel">
 
-  <span data-toggle="tooltip" data-placement="left" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>">    </span>
-  <span data-toggle="tooltip" data-placement="left" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding">    </span>
-  <div class="media-body">
+<% if current_user && post.user == current_user %>
+  <div class="pull-left">
+    <div><%= link_to image_tag("uparrow.png", width: 21, height: 15), post_move_up_path(post), class: "btn btn-xs"%></div>
+    <div><%= link_to image_tag("downarrow.png", width: 21, height: 15), post_move_down_path(post), class: "btn btn-xs" %></div>
+  </div>
+<% end %>
+
+  <h4 style="vertical-align: middle;"><span data-toggle="tooltip" data-placement="top" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>"></span>
+  <span data-toggle="tooltip" data-placement="top" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding"></span></h4>
+
+  <div class="media-body" style="padding-left: 1em;">
     <% case post.ptype %>
     <% when FOLDER_TYPE %>
       <h4 class="media-heading">
@@ -44,8 +52,5 @@
       </div>
     <% end %>
 
-    <div class="pull-left">
-
-    </div>
   </div>
 </div>

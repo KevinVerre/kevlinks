@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   has_ancestry(orphan_strategy: :destroy)
   belongs_to :user
+  acts_as_list :scope => "ancestry"
+
 
   def icon
     case self.ptype

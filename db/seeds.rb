@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 kevin = User.new(name: 'Kevin', email: 'verre.kevin@gmail.com', password: 'helloworld', password_confirmation: 'helloworld')
-kevin.skip_confirmation!
+#kevin.skip_confirmation!
 kevin.save
 
 puts "Kevin created."
@@ -17,14 +17,14 @@ user2 = User.new(
   email: 'thekevinnetwork@gmail.com',
   password: 'helloworld',
   password_confirmation: 'helloworld')
-user2.skip_confirmation!
+#user2.skip_confirmation!
 user2.save
 
 puts "Kevin Network created."
 
 #root = Post.create(ptype: FOLDER_TYPE, title: "Kevin's KevLinks Page", body: "My first attempt at making a KevLinks page.")
 root = kevin.root
-root.update(ptype: FOLDER_TYPE, title: "Kevin's KevLinks Page", body: "My first attempt at making a KevLinks page.")
+root.update(ptype: FOLDER_TYPE, title: "Kevin's FolderNotes Page", body: "My first attempt at making a FolderNotes page.")
 
 topicA = Post.create(user: kevin, ptype: FOLDER_TYPE, title: "Notes on Mac OSX", body: "", private: false)
 topicB = Post.create(user: kevin, ptype: FOLDER_TYPE, title: "Websites", body: "Websites and the Internet", private: false)
