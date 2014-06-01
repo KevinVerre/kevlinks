@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     # If there is a value > 0 in the cookie's :cut value
     # Find the post with that value ID and update it's parent to be this folder
     # Then clear the cookie's value
-    if session[:cutPostValue] > 0
+    if (session[:cutPostValue] && session[:cutPostValue] > 0)
 
       postToMove = Post.find(session[:cutPostValue])
       postToMove.parent = @post
@@ -112,13 +112,14 @@ class PostsController < ApplicationController
   end
 
   def create
+    my_params = post_params()
+    p "params (next line):"
+    p params
+    p "my_params (next line): "
+    p my_params
 
-    my_params = post_params
     @post = Post.new(my_params)
     @post.user = current_user
-
-    p my_params
-    p params
 
     if my_params[:parent_id]
 
@@ -154,6 +155,12 @@ class PostsController < ApplicationController
   end
 
   def update
+    my_params = post_params()
+    p "params (next line):"
+    p params
+    p "my_params (next line): "
+    p my_params
+
     @post = Post.find(params[:id])
 
     # Don't update a post if not logged in as the post's owner
@@ -161,8 +168,10 @@ class PostsController < ApplicationController
       redirect_to root_path
       return
     end 
+    puts "Authenticated and authorized update. Will now attempt to save..."
 
-    if @post.update_attributes(post_params)
+    if @post.update_attributes(my_params)
+      puts "Successfully updated."
       redirect_to @post
     else
       render :edit
