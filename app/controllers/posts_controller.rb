@@ -89,7 +89,7 @@ class PostsController < ApplicationController
     @new_post = Post.new
 
     @cutPost
-    if session[:cutPostValue] > 0
+    if (session[:cutPostValue] && session[:cutPostValue] > 0)
       @cutPost = Post.find(session[:cutPostValue])
       if (current_user != @cutPost.user)
         @cutPost = nil
