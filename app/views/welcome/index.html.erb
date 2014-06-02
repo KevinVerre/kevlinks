@@ -1,12 +1,46 @@
-<h1>Welcome to FolderNotes.com!</h1>
-<h3>Write things down!</h3>
-  <p>You can use FolderNotes to easily write notes about anything you want and save them online.</p>
-<h3>Bookmark related websites!</h3>
-  <p>You can also use FolderNotes to save the URLs to other websites and webpages.</p>
-<h3>Organize into folders!</h3>
-  <p>FolderNotes makes it easy to write notes about lots of different topics. You can create folders to help you organize your notes. You can even create a hierachy of folders within folders.</p>
-<h3>Share your best content!</h3>
-  <p>Everything you create with FolderNotes will be private by default. But if you want others to be able to see certain folders or posts, you can choose to make them publicly visible.</p>
-<h3>Start using FolderNotes.com now!</h3>
-  <p>To begin, click "sign up" on the top right of this page. You'll be asked to give us an email address which will be associated with your account but not shown to anyone.</p>
 
+<div class="jumbotron">
+    <h1>Welcome to FolderNotes!</h1>
+    <p>
+      FolderNotes.com is a website for saving, organizing, and publishing notes, links, and blogposts.
+    </p>
+    <p>
+      <%= link_to "New user? Sign up!", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Returning user? Sign in!", new_user_session_path, class: "btn btn-success btn-lg" %>
+    </p>
+</div>
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Write notes and blog posts!</h2>
+      <p>
+        You can use FolderNotes to easily write about anything you want and save it online.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h2>Save links to related websites!</h2>
+      <p>
+        You can also use FolderNotes to bookmark the URLs to other websites and webpages.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h2>Organize into folders!</h2>
+      <p>
+        FolderNotes makes it easy to write notes about lots of different topics. You can create folders to help you organize your notes. You can even create a hierachy of folders within folders.
+      </p>
+    </div>
+    <div class="col-md-3">
+      <h2>Share your best content!</h2>
+      <p>
+        Everything you create with FolderNotes will be private by default. But if you want others to be able to see certain folders or posts, you can choose to make them publicly visible.
+      </p>
+    </div>
+  </div>
+
+<br/>
+<p>
+  <div class="container">
+    <%= link_to "Learn more about FolderNotes", welcome_about_path, class: "col-md-3 col-md-offset-0 btn btn-info btn-lg" %>
+  </div>
+</p>

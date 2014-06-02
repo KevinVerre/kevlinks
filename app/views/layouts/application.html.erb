@@ -29,7 +29,9 @@
               <li class="active"><%= link_to "Hello, "+ current_user.email + "!", root_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
             <% else %>
+              <li><p class="navbar-text">|</p></li>
               <li class=""><%= link_to "Sign In", new_user_session_path %></li>
+              <li><p class="navbar-text">|</p></li>
               <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
           </ul>
@@ -40,5 +42,8 @@
     <div class="container">
       <%= yield %>
     </div>
+
+    <hr/>
+
   </body>
 </html>
