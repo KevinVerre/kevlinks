@@ -8,9 +8,10 @@
       </div>
     <% end %>
 
-    <h4 style="vertical-align: middle;"><span data-toggle="tooltip" data-placement="top" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>"></span>
-    <span data-toggle="tooltip" data-placement="top" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding"></span></h4>
-    <h4 class="pull-left"><%= post.position %></h4>
+    <h4 style="vertical-align: middle;">
+      <span data-toggle="tooltip" data-placement="top" title="<%= GetPrivacyString(post) %>" class="pull-left iconPadding <%= PrivacyIcon(post) %>"></span>
+      <span data-toggle="tooltip" data-placement="top" title= "<%= GetTypeString(post) %>"class="<%= post.icon %> pull-left iconPadding"></span>
+    </h4>
 
     <div class="media-body" style="padding-left: 1em;">
       <% case post.ptype %>
