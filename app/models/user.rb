@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :posts
 
   after_create do
-    root = self.posts.build(ptype: FOLDER_TYPE, title: "My folder", body: "This is your root folder.")
+    root = self.posts.build(ptype: FOLDER_TYPE, title: "My folder", body: "This is your root folder.", private: true, position: 1)
     root.save
     logger.debug "DEBUG: user.rb after_create method."
   end
