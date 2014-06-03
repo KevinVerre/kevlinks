@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   has_ancestry(orphan_strategy: :destroy)
   belongs_to :user
 
-  after_create :move_to_top
+  after_create :move_to_bottom
 
   validates :title, length: {minimum: 1}, if: "ptype == FOLDER_TYPE"
 
