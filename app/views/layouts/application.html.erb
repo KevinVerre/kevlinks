@@ -13,9 +13,20 @@
     <div class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
       <div class="container">
 
+        <ul class="nav navbar-nav navbar-header">
+          <li>
+            <a class= "navbar-link" href="<%= root_path %>">
+              <% if current_user %>
+                <span class="glyphicon glyphicon-home"></span>
+              <% end %>
+              FolderNotes.com — Beta Version
+            </a>
+          </li>
+        </ul>
+
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="navbar-header"><%= link_to "FolderNotes.com — Beta Version", root_path %></li>
+
             <li><p class="navbar-text">|</p></li>
             <!--<li><%= link_to "Newsfeed", posts_path, id: 'newsfeed_link' %></li><li><p class="navbar-text">|</p></li>/-->
             <li><%= link_to "About", welcome_about_path %></li><li><p class="navbar-text">|</p></li>
@@ -26,7 +37,12 @@
           <ul class="nav navbar-nav navbar-right">
 
             <% if current_user %>
-              <li class="active"><%= link_to "Hello, "+ current_user.email + "!", root_path %></li>
+              <li class="active">
+                <a href="<%= root_path %>">
+                  <span class="glyphicon glyphicon-home"></span>
+                  Hello, <%= current_user.email %> !
+                </a>
+              </li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
             <% else %>
               <li><p class="navbar-text">|</p></li>
