@@ -206,9 +206,9 @@ class PostsController < ApplicationController
   private
 
   def url_checker(inputString)
-    resultingString = ""
+    resultingString = inputString
     if !inputString.starts_with?("http://")
-      resultingString = "http://" + inputString
+      resultingString = "http://" + resultingString
     end
     resultingString
   end
