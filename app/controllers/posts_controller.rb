@@ -129,6 +129,7 @@ class PostsController < ApplicationController
         PostChecker(@post)
 
         if @post.save
+          flash[:notice] = "New #{ @post.getTypeString } was created successfully."
           redirect_to @post
           return
         else

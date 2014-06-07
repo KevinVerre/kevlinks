@@ -6,6 +6,19 @@ class Post < ActiveRecord::Base
 
   validates :title, length: {minimum: 1}, if: "ptype == FOLDER_TYPE"
 
+  def getTypeString
+    case self.ptype
+    when FOLDER_TYPE
+      "folder"
+    when BLOG_TYPE
+      "blog"
+    when TWEET_TYPE
+      "note"
+    when LINK_TYPE
+      "link"
+    end
+  end
+
   def move_higher
     puts "Entered move_higher for '"+ self.title + "' (id: "+ self.id.to_s + ")"
     if self.is_root? || self.is_only_child?
