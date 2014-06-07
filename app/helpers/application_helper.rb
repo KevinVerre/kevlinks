@@ -7,17 +7,4 @@ module ApplicationHelper
     (redcarpet.render text).html_safe
   end
 
-  def GetTypeString(p)
-    case p.ptype
-    when FOLDER_TYPE
-      "folder"
-    when BLOG_TYPE
-      "blog"
-    when TWEET_TYPE
-      "note"
-    when LINK_TYPE
-      "link"
-    end
-  end
-
 end

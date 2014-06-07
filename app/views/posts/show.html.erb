@@ -3,7 +3,7 @@
 
 <% if session[:cutPostValue] && session[:cutPostValue] > 0 %>
   <div class="alert alert-warning">
-  <p><%= link_to ("Click here to move your '"+@cutPost.title+"' "+GetTypeString(@cutPost)), post_paste_into_folder_path(@post) %> into your '<%= @post.title %>' folder. <%= link_to "(Cancel move)", post_paste_cancel_path(@post) %>.</p>
+  <p><%= link_to ("Click here to move your '"+@cutPost.title+"' "+@cutPost.getTypeString), post_paste_into_folder_path(@post) %> into your '<%= @post.title %>' folder. <%= link_to "(Cancel move)", post_paste_cancel_path(@post) %>.</p>
   </div>
 <% end %>
 
