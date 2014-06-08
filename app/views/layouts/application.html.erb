@@ -57,7 +57,7 @@
 
     <div class="container">
     <!-- flash is a rails object that gets cleared after the next action /-->
-    <% if flash[:notice] %>
+    <% if (flash[:notice] && !(flash[:notice].blank?)) %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= flash[:notice] %>
