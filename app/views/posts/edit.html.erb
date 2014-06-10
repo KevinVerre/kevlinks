@@ -15,4 +15,4 @@
 <hr/>
 
 <%= render partial: 'breadcrumbs', locals: {post: @parent_post} %>
-<%= render partial: 'folder_show', locals: {post: @parent_post, children: @parent_post.children, new_post: @post} %>
+<%= render partial: 'folder_show', locals: {post: @parent_post, children: @parent_post.children.order(:position), new_post: @post} %>
