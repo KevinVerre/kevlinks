@@ -8,10 +8,10 @@
   <%= f.label "Folder Subtitle:"%>
   <%= f.text_field :body, placeholder: "(Not required)", class: 'form-control' %>
 
-  <%= f.label "Private" %>
   <%= f.radio_button :private, true, checked: true %>
-  <%= f.label "Public" %>
+  <%= f.label "Private" %>
   <%= f.radio_button :private, false %>
+  <%= f.label "Public" %>
 
   <br/>
   <%= f.submit "Save", class: 'btn btn-success' %>
